@@ -20,4 +20,5 @@
     <string name="edt_email_hint">Masukkan Email Anda</string>
     <string name="edt_password_hint">Masukkan Password Anda</string>
     <string name="invalid_email">Alamat Email Tidak Valid</string>
+    <string name="invalid_password">Password tidak boleh kurang dari 8 karakter</string>
 </resources>
