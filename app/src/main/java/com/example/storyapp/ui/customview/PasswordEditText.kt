@@ -49,7 +49,8 @@ class PasswordEditText : AppCompatEditText {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().isNotEmpty() && s.length < 8) passwordEditTextLayout.error = context.getString(R.string.invalid_password)
+                if (s.toString().isNotEmpty() && s.length < 8)
+                    error = context.getString(R.string.invalid_password)
             }
 
             override fun afterTextChanged(s: Editable?) {
