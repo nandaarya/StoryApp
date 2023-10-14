@@ -14,13 +14,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyapp.R
-import com.example.storyapp.databinding.ActivitySignupBinding
-import com.example.storyapp.utils.ViewModelFactory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import com.example.storyapp.data.Result
+import com.example.storyapp.databinding.ActivitySignupBinding
 import com.example.storyapp.ui.login.LoginActivity
+import com.example.storyapp.utils.ViewModelFactory
 
 class SignupActivity : AppCompatActivity() {
 
@@ -44,7 +41,7 @@ class SignupActivity : AppCompatActivity() {
                     showLoading(false)
                     AlertDialog.Builder(this@SignupActivity).apply {
                         setTitle("Yeah!")
-                        setMessage("Akun sudah jadi nih. Yuk, segera bagikan ceritamu.")
+                        setMessage("Akun sudah jadi nih. Yuk, login dan segera bagikan ceritamu.")
                         setPositiveButton("Lanjut") { _, _ ->
                             finish()
                         }

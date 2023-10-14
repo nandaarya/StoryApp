@@ -4,28 +4,62 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import com.example.storyapp.ui.main.MainActivity
-import com.example.storyapp.data.UserModel
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.storyapp.data.Result
 import com.example.storyapp.databinding.ActivityLoginBinding
+import com.example.storyapp.ui.main.MainActivity
 import com.example.storyapp.utils.ViewModelFactory
 
 class LoginActivity : AppCompatActivity() {
-    private val viewModel by viewModels<LoginViewModel> {
-        ViewModelFactory.getInstance(this)
-    }
+    private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
+        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
+
+        loginViewModel.loginResponse.observe(this) {
+            when (it) {
+                is Result.Loading -> {
+                    showLoading(true)
+                }
+                is Result.Success -> {
+                    showLoading(false)
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Yeah!")
+                        setMessage("Anda berhasil login!")
+                        setPositiveButton("Lanjut") { _, _ ->
+                            val intent = Intent(context, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                            finish()
+                        }
+                        create()
+                        show()
+                    }
+                }
+                is Result.Error -> {
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Maaf!")
+                        setMessage("Login gagal! Masukkan data email dan password dengan benar.")
+                        create()
+                        show()
+                    }
+                    showLoading(false)
+                }
+            }
+        }
 
         setupView()
         setupAction()
@@ -47,19 +81,13 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString()
-            viewModel.saveSession(UserModel(email, "sample_token"))
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Anda berhasil login. Sudah tidak sabar untuk belajar ya?")
-                setPositiveButton("Lanjut") { _, _ ->
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                    finish()
+            binding.apply {
+                if (emailEditText.error.isNullOrEmpty() && passwordEditText.error.isNullOrEmpty()) {
+                    val email = emailEditText.text.toString().trim()
+                    val password = passwordEditText.text.toString().trim()
+                    loginViewModel.login(email, password)
+                    Log.d("Data Login", "email: $email, password: $password")
                 }
-                create()
-                show()
             }
         }
     }
@@ -96,5 +124,9 @@ class LoginActivity : AppCompatActivity() {
             )
             startDelay = 100
         }.start()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

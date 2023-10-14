@@ -1,15 +1,21 @@
 package com.example.storyapp.ui.login
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.storyapp.data.UserModel
 import com.example.storyapp.data.Repository
-import kotlinx.coroutines.launch
+import com.example.storyapp.data.Result
+import com.example.storyapp.data.response.LoginResponse
 
 class LoginViewModel(private val repository: Repository) : ViewModel() {
-    fun saveSession(user: UserModel) {
-        viewModelScope.launch {
-            repository.saveSession(user)
+
+    private val _loginResponse = MediatorLiveData<Result<LoginResponse>>()
+    val loginResponse: LiveData<Result<LoginResponse>> = _loginResponse
+
+    fun login(email: String, password: String) {
+        val liveData = repository.login(email, password)
+        _loginResponse.addSource(liveData) { result ->
+            _loginResponse.value = result
         }
     }
 }
