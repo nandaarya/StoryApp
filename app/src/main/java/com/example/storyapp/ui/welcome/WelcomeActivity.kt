@@ -8,19 +8,32 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.storyapp.databinding.ActivityWelcomeBinding
 import com.example.storyapp.ui.login.LoginActivity
+import com.example.storyapp.ui.main.MainActivity
+import com.example.storyapp.ui.main.MainViewModel
 import com.example.storyapp.ui.signup.SignupActivity
+import com.example.storyapp.utils.ViewModelFactory
 
 class WelcomeActivity : AppCompatActivity() {
-
+    private val viewModel by viewModels<MainViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
     private lateinit var binding: ActivityWelcomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel.getSession().observe(this) { user ->
+            if (user.isLogin) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
+        }
 
         setupView()
         setupAction()
