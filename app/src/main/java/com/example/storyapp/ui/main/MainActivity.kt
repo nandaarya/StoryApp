@@ -1,21 +1,16 @@
 package com.example.storyapp.ui.main
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.storyapp.R
 import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.ui.welcome.WelcomeActivity
 import com.example.storyapp.utils.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel by viewModels<MainViewModel> {
+    private val mainViewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
     private lateinit var binding: ActivityMainBinding
@@ -25,51 +20,25 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.getSession().observe(this) { user ->
+        mainViewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
         }
 
-        setupView()
-        setupAction()
-        playAnimation()
+        setOptionMenu()
     }
 
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
+    private fun setOptionMenu() {
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_logout -> {
+                    mainViewModel.logout()
+                    true
+                }
+                else -> false
+            }
         }
-        supportActionBar?.hide()
-    }
-
-    private fun setupAction() {
-        binding.logoutButton.setOnClickListener {
-            viewModel.logout()
-        }
-    }
-
-    private fun playAnimation() {
-        ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
-            duration = 6000
-            repeatCount = ObjectAnimator.INFINITE
-            repeatMode = ObjectAnimator.REVERSE
-        }.start()
-
-        val name = ObjectAnimator.ofFloat(binding.nameTextView, View.ALPHA, 1f).setDuration(100)
-        val message = ObjectAnimator.ofFloat(binding.messageTextView, View.ALPHA, 1f).setDuration(100)
-        val logout = ObjectAnimator.ofFloat(binding.logoutButton, View.ALPHA, 1f).setDuration(100)
-
-        AnimatorSet().apply {
-            playSequentially(name, message, logout)
-            startDelay = 100
-        }.start()
     }
 }
