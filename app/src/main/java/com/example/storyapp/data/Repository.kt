@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.storyapp.data.datastore.UserPreference
+import com.example.storyapp.data.response.ListStoryItem
 import com.example.storyapp.data.response.LoginResponse
 import com.example.storyapp.data.response.RegisterResponse
 import com.example.storyapp.data.retrofit.ApiService
@@ -27,7 +28,11 @@ class Repository private constructor(
         userPreference.logout()
     }
 
-    fun register(name: String, email: String, password: String): LiveData<Result<RegisterResponse>> =
+    fun register(
+        name: String,
+        email: String,
+        password: String
+    ): LiveData<Result<RegisterResponse>> =
         liveData(Dispatchers.IO) {
             emit(Result.Loading)
             try {
@@ -48,6 +53,19 @@ class Repository private constructor(
                 saveSession(UserModel(email, token))
                 Log.d("Response Login", "email: $email, token: $token")
                 emit(Result.Success(response))
+            } catch (e: Exception) {
+                emit(Result.Error(e.message.toString()))
+            }
+        }
+
+    fun getStories(): LiveData<Result<List<ListStoryItem>>> =
+        liveData(Dispatchers.IO) {
+            emit(Result.Loading)
+            try {
+                val response = apiService.getStories()
+                val storyList = response.listStory
+                Log.d("Response Get Stories", "${response.message}")
+                emit(Result.Success(storyList))
             } catch (e: Exception) {
                 emit(Result.Error(e.message.toString()))
             }
