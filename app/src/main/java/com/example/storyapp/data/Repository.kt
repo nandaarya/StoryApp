@@ -62,11 +62,13 @@ class Repository private constructor(
         liveData(Dispatchers.IO) {
             emit(Result.Loading)
             try {
+                Log.d("story list", "Mulai getStories")
                 val response = apiService.getStories()
                 val storyList = response.listStory
-                Log.d("Response Get Stories", "${response.message}")
+                Log.d("story list", "${response.message}")
                 emit(Result.Success(storyList))
             } catch (e: Exception) {
+                Log.d("story list", "error getStories")
                 emit(Result.Error(e.message.toString()))
             }
         }

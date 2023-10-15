@@ -7,11 +7,13 @@ import com.bumptech.glide.Glide
 import com.example.storyapp.data.response.ListStoryItem
 import com.example.storyapp.databinding.ItemLayoutBinding
 
-class StoryListAdapter(private val storyList: List<ListStoryItem>): RecyclerView.Adapter<StoryListAdapter.StoryListViewHolder>() {
+class StoryListAdapter(private val storyList: List<ListStoryItem>) :
+    RecyclerView.Adapter<StoryListAdapter.StoryListViewHolder>() {
     inner class StoryListViewHolder(private val binding: ItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(storyItem: ListStoryItem) {
-            binding.tvUsername.text = storyItem.name
+            binding.tvName.text = storyItem.name
+            binding.tvDescription.text = storyItem.description
 
             Glide
                 .with(itemView.context)

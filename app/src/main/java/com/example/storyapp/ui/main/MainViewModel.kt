@@ -12,7 +12,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     private val _storyList = MediatorLiveData<Result<List<ListStoryItem>>>()
     val storyList: LiveData<Result<List<ListStoryItem>>> = _storyList
 
-    private fun getStories() {
+    fun getStories() {
         val liveData = repository.getStories()
         _storyList.addSource(liveData) { result ->
             _storyList.value = result
@@ -26,9 +26,5 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             repository.logout()
         }
-    }
-
-    init {
-        getStories()
     }
 }
