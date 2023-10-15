@@ -1,11 +1,13 @@
 package com.example.storyapp.ui.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.storyapp.data.response.ListStoryItem
 import com.example.storyapp.databinding.ItemLayoutBinding
+import com.example.storyapp.ui.detail.DetailActivity
 
 class StoryListAdapter(private val storyList: List<ListStoryItem>) :
     RecyclerView.Adapter<StoryListAdapter.StoryListViewHolder>() {
@@ -21,11 +23,11 @@ class StoryListAdapter(private val storyList: List<ListStoryItem>) :
                 .fitCenter()
                 .into(binding.ivProfilePhoto)
 
-//            binding.itemLayout.setOnClickListener {
-//                val intent = Intent(itemView.context, DetailUserActivity::class.java)
-//                intent.putExtra("username", githubUser.login)
-//                itemView.context.startActivity(intent)
-//            }
+            binding.itemLayout.setOnClickListener {
+                val intent = Intent(itemView.context, DetailActivity::class.java)
+                intent.putExtra("storyItem", storyItem)
+                itemView.context.startActivity(intent)
+            }
         }
     }
 
