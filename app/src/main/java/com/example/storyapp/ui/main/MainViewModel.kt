@@ -12,8 +12,8 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     private val _storyList = MediatorLiveData<Result<List<ListStoryItem>>>()
     val storyList: LiveData<Result<List<ListStoryItem>>> = _storyList
 
-    fun getStories() {
-        val liveData = repository.getStories()
+    fun getStories(token: String) {
+        val liveData = repository.getStories(token)
         _storyList.addSource(liveData) { result ->
             _storyList.value = result
         }

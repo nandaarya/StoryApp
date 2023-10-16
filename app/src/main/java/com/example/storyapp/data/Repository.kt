@@ -61,12 +61,12 @@ class Repository private constructor(
             }
         }
 
-    fun getStories(): LiveData<Result<List<ListStoryItem>>> =
+    fun getStories(token: String): LiveData<Result<List<ListStoryItem>>> =
         liveData(Dispatchers.IO) {
             emit(Result.Loading)
             try {
                 Log.d("story list", "Mulai getStories")
-                val response = apiService.getStories()
+                val response = apiService.getStories("Bearer $token")
                 val storyList = response.listStory
                 Log.d("story list", "${response.message}")
                 emit(Result.Success(storyList))

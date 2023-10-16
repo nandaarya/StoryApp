@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 finish()
             } else {
                 Log.d("story list","token di mainActivity: ${user.token}")
-                mainViewModel.getStories()
+                mainViewModel.getStories(user.token)
             }
         }
 
