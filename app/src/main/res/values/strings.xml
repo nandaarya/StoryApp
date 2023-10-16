@@ -26,4 +26,6 @@
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="upload">Upload</string>
+    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="description_hint">Write your description…</string>
 </resources>

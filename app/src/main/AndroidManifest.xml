@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +22,7 @@
         <activity
             android:name=".ui.upload.UploadStoryActivity"
             android:exported="false"
-            android:theme="@style/action_bar"/>
+            android:theme="@style/action_bar" />
         <activity
             android:name=".ui.detail.DetailActivity"
             android:exported="false"

@@ -11,6 +11,7 @@ import com.example.storyapp.R
 import com.example.storyapp.data.Result
 import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.ui.adapter.StoryListAdapter
+import com.example.storyapp.ui.upload.UploadStoryActivity
 import com.example.storyapp.ui.welcome.WelcomeActivity
 import com.example.storyapp.utils.ViewModelFactory
 
@@ -58,7 +59,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         setOptionMenu()
+        setFAB()
         Log.d("story list","akhir on create")
+    }
+
+    private fun setFAB() {
+        binding.fabAddStory.setOnClickListener {
+            val intent = Intent(this, UploadStoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setOptionMenu() {

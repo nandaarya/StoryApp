@@ -39,6 +39,7 @@ class LoginActivity : AppCompatActivity() {
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
                         setMessage("Anda berhasil login!")
+                        setCancelable(false)
                         setPositiveButton("Lanjut") { _, _ ->
                             val intent = Intent(context, MainActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

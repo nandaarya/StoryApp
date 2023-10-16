@@ -7,9 +7,12 @@ import com.example.storyapp.data.datastore.UserPreference
 import com.example.storyapp.data.response.ListStoryItem
 import com.example.storyapp.data.response.LoginResponse
 import com.example.storyapp.data.response.RegisterResponse
+import com.example.storyapp.data.response.UploadStoryResponse
 import com.example.storyapp.data.retrofit.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class Repository private constructor(
     private val apiService: ApiService,
@@ -69,6 +72,17 @@ class Repository private constructor(
                 emit(Result.Success(storyList))
             } catch (e: Exception) {
                 Log.d("story list", "error getStories")
+                emit(Result.Error(e.message.toString()))
+            }
+        }
+
+    fun uploadStory(file: MultipartBody.Part, description: RequestBody): LiveData<Result<UploadStoryResponse>> =
+        liveData(Dispatchers.IO) {
+            emit(Result.Loading)
+            try {
+                val response = apiService.uploadStory(file, description)
+                emit(Result.Success(response))
+            } catch (e: Exception) {
                 emit(Result.Error(e.message.toString()))
             }
         }

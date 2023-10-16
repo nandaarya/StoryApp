@@ -7,6 +7,16 @@
     android:layout_margin="16dp"
     tools:context=".ui.upload.UploadStoryActivity">
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/previewImageView"
         android:layout_width="match_parent"
@@ -25,8 +35,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/camera"
+        android:layout_marginVertical="16dp"
         android:layout_marginHorizontal="8dp"
-        app:layout_constraintBottom_toTopOf="@id/edt_description"
+        app:layout_constraintBottom_toTopOf="@id/layout_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/galleryButton"
         app:layout_constraintTop_toBottomOf="@id/previewImageView" />
@@ -36,21 +47,33 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/gallery"
+        android:layout_marginVertical="16dp"
         android:layout_marginHorizontal="8dp"
-        app:layout_constraintBottom_toTopOf="@id/edt_description"
+        app:layout_constraintBottom_toTopOf="@id/layout_description"
         app:layout_constraintEnd_toStartOf="@id/cameraButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/previewImageView" />
 
-    <EditText
-        android:id="@+id/edt_description"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_description"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Description"
-        app:layout_constraintBottom_toTopOf="@id/uploadButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/uploadButton">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:hint="@string/description_hint"
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/uploadButton"
