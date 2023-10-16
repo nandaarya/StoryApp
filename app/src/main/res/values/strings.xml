@@ -23,4 +23,7 @@
     <string name="invalid_password">Password tidak boleh kurang dari 8 karakter</string>
     <string name="register_failed">Register gagal, masukkan data dengan benar!</string>
     <string name="login_failed">Login gagal! Masukkan email dan password yang benar!</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload">Upload</string>
 </resources>

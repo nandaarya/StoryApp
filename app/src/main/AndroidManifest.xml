@@ -14,9 +14,13 @@
         android:theme="@style/Theme.StoryApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.upload.UploadStoryActivity"
+            android:exported="false"
+            android:theme="@style/action_bar"/>
+        <activity
             android:name=".ui.detail.DetailActivity"
-            android:theme="@style/action_bar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/action_bar" />
         <activity
             android:name=".ui.signup.SignupActivity"
             android:exported="false" />
