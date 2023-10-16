@@ -132,6 +132,7 @@ class UploadStoryActivity : AppCompatActivity() {
     }
 
     private fun uploadImage() {
+        var token: String
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, this).reduceFileImage()
             Log.d("Image File", "showImage: ${imageFile.path}")
@@ -146,7 +147,10 @@ class UploadStoryActivity : AppCompatActivity() {
                 requestImageFile
             )
 
-            uploadStoryViewModel.uploadStory(multipartBody, requestBody)
+            uploadStoryViewModel.getSession().observe(this) { user ->
+                token = user.token
+                uploadStoryViewModel.uploadStory(token, multipartBody, requestBody)
+            }
 
         } ?: showToast(getString(R.string.empty_image_warning))
     }

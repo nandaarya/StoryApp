@@ -76,11 +76,11 @@ class Repository private constructor(
             }
         }
 
-    fun uploadStory(file: MultipartBody.Part, description: RequestBody): LiveData<Result<UploadStoryResponse>> =
+    fun uploadStory(token: String, file: MultipartBody.Part, description: RequestBody): LiveData<Result<UploadStoryResponse>> =
         liveData(Dispatchers.IO) {
             emit(Result.Loading)
             try {
-                val response = apiService.uploadStory(file, description)
+                val response = apiService.uploadStory("Bearer $token", file, description)
                 emit(Result.Success(response))
             } catch (e: Exception) {
                 emit(Result.Error(e.message.toString()))
