@@ -40,7 +40,6 @@ class Repository private constructor(
             emit(Result.Loading)
             try {
                 val response = apiService.register(name, email, password)
-                Log.d("Response Register", response.message ?: "message null")
                 emit(Result.Success(response))
             } catch (e: Exception) {
                 emit(Result.Error(e.message.toString()))
@@ -54,7 +53,6 @@ class Repository private constructor(
                 val response = apiService.login(email, password)
                 val token = response.loginResult.token
                 saveSession(UserModel(email, token))
-                Log.d("Response Login", "email: $email, token: $token")
                 emit(Result.Success(response))
             } catch (e: Exception) {
                 emit(Result.Error(e.message.toString()))
@@ -65,13 +63,10 @@ class Repository private constructor(
         liveData(Dispatchers.IO) {
             emit(Result.Loading)
             try {
-                Log.d("story list", "Mulai getStories")
                 val response = apiService.getStories("Bearer $token")
                 val storyList = response.listStory
-                Log.d("story list", "${response.message}")
                 emit(Result.Success(storyList))
             } catch (e: Exception) {
-                Log.d("story list", "error getStories")
                 emit(Result.Error(e.message.toString()))
             }
         }

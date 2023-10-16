@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             } else {
-                Log.d("story list","token di mainActivity: ${user.token}")
                 mainViewModel.getStories(user.token)
             }
         }
@@ -47,11 +46,9 @@ class MainActivity : AppCompatActivity() {
                 is Result.Loading -> showLoading(true)
                 is Result.Error -> {
                     showLoading(false)
-                    Log.d("story list","data story list gagal diambil")
                 }
                 is Result.Success -> {
                     showLoading(false)
-                    Log.d("story list","data story list di passing ke adapter")
                     adapter = StoryListAdapter(it.data)
                     binding.rvStoryList.adapter = adapter
                 }
@@ -60,7 +57,6 @@ class MainActivity : AppCompatActivity() {
 
         setOptionMenu()
         setFAB()
-        Log.d("story list","akhir on create")
     }
 
     private fun setFAB() {

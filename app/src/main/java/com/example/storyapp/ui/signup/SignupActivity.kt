@@ -84,7 +84,6 @@ class SignupActivity : AppCompatActivity() {
                     val email = emailEditText.text.toString().trim()
                     val password = passwordEditText.text.toString().trim()
                     signupViewModel.register(name, email, password)
-                    Log.d("Data Register", "nama: $name, email: $email, password: $password")
                 } else {
                     registerFailedToast()
                 }

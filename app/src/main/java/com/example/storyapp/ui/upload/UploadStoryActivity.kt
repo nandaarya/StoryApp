@@ -114,7 +114,6 @@ class UploadStoryActivity : AppCompatActivity() {
             currentImageUri = uri
             showImage()
         } else {
-            Log.d("Photo Picker", "No media selected")
         }
     }
 
@@ -135,7 +134,6 @@ class UploadStoryActivity : AppCompatActivity() {
         var token: String
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, this).reduceFileImage()
-            Log.d("Image File", "showImage: ${imageFile.path}")
             val description = binding.edtDescription.text.toString()
             showLoading(true)
 
@@ -157,7 +155,6 @@ class UploadStoryActivity : AppCompatActivity() {
 
     private fun showImage() {
         currentImageUri?.let {
-            Log.d("Image URI", "showImage: $it")
             binding.previewImageView.setImageURI(it)
         }
     }

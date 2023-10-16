@@ -87,7 +87,6 @@ class LoginActivity : AppCompatActivity() {
                     val email = emailEditText.text.toString().trim()
                     val password = passwordEditText.text.toString().trim()
                     loginViewModel.login(email, password)
-                    Log.d("Data Login", "email: $email, password: $password")
                 }
             }
         }

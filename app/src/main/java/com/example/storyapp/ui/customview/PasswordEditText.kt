@@ -47,10 +47,9 @@ class PasswordEditText : AppCompatEditText {
         setHint(R.string.edt_password_hint)
 
         setOnTouchListener { _, event ->
-            val drawableRight = 2 // Right drawable index
+            val drawableRight = 2
             if (event.action == MotionEvent.ACTION_UP) {
                 if (event.rawX >= (right - compoundDrawables[drawableRight].bounds.width())) {
-                    // Toggle password visibility
                     togglePasswordVisibility()
                     return@setOnTouchListener true
                 }
