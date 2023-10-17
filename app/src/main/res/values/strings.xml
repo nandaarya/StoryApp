@@ -36,6 +36,9 @@
     <string name="login_dialog_message">You have successfully logged in!</string>
     <string name="login_failed_dialog">Login failed! Enter your email and password data correctly.</string>
     <string name="login_failed_dialog_title">Sorry!</string>
+    <string name="description">description</string>
+    <string name="story_image">story image</string>
+    <string name="add_story_button">add story button</string>
     <string-array name="language_array">
         <item>English</item>
         <item>Indonesia</item>

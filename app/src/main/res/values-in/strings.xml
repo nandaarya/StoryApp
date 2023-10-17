@@ -37,6 +37,9 @@
     <string name="login_dialog_message">Anda berhasil login!</string>
     <string name="login_failed_dialog">Login gagal! Masukkan data email dan password dengan benar.</string>
     <string name="login_failed_dialog_title">Maaf!</string>
+    <string name="description">deskripsi</string>
+    <string name="story_image">gambar cerita</string>
+    <string name="add_story_button">tombol tambah cerita</string>
     <string-array name="language_array">
         <item>Inggris</item>
         <item>Indonesia</item>

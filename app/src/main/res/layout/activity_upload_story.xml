@@ -24,11 +24,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/story_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_place_holder" />
+        app:srcCompat="@drawable/ic_place_holder"
+        tools:ignore="ImageContrastCheck" />
 
     <Button
         android:id="@+id/cameraButton"
@@ -40,7 +41,8 @@
         app:layout_constraintBottom_toTopOf="@id/layout_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/galleryButton"
-        app:layout_constraintTop_toBottomOf="@id/previewImageView" />
+        app:layout_constraintTop_toBottomOf="@id/previewImageView"
+        tools:ignore="VisualLintButtonSize" />
 
     <Button
         android:id="@+id/galleryButton"
@@ -52,7 +54,8 @@
         app:layout_constraintBottom_toTopOf="@id/layout_description"
         app:layout_constraintEnd_toStartOf="@id/cameraButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/previewImageView" />
+        app:layout_constraintTop_toBottomOf="@id/previewImageView"
+        tools:ignore="VisualLintButtonSize" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_description"
@@ -72,7 +75,9 @@
             android:hint="@string/description_hint"
             android:inputType="textMultiLine"
             android:lines="10"
-            android:textSize="14sp" />
+            android:textColorHint="#8D6E63"
+            android:textSize="14sp"
+            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -85,6 +90,7 @@
         android:text="@string/upload"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

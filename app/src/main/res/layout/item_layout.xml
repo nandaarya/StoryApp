@@ -21,14 +21,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            tools:ignore="ImageContrastCheck"
+            tools:src="@tools:sample/avatars"
+            android:contentDescription="@string/story_image" />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="name"
+            android:text="@string/name"
             style="@style/Big"
             app:layout_constraintBottom_toTopOf="@+id/tv_description"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="description"
+            android:text="@string/description"
             android:maxLines="3"
             style="@style/Normal"
             app:layout_constraintBottom_toBottomOf="parent"

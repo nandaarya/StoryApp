@@ -14,14 +14,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        tools:ignore="ImageContrastCheck"
+        tools:src="@tools:sample/avatars"
+        android:contentDescription="@string/story_image" />
 
     <TextView
         android:id="@+id/tv_name"
         style="@style/Big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="name"
+        android:text="@string/name"
         android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_profile_photo" />
@@ -31,7 +33,7 @@
         style="@style/Normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="description"
+        android:text="@string/description"
         android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
