@@ -3,6 +3,7 @@ package com.example.storyapp.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -70,7 +71,18 @@ class MainActivity : AppCompatActivity() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_logout -> {
-                    mainViewModel.logout()
+                    AlertDialog.Builder(this).apply {
+                        setTitle(getString(R.string.logout_dialog_title))
+                        setMessage(getString(R.string.logout_dialog_message))
+                        setPositiveButton(getString(R.string.yes)) { _, _ ->
+                            mainViewModel.logout()
+                        }
+                        setNegativeButton(getString(R.string.no)) { _, _ ->
+
+                        }
+                        create()
+                        show()
+                    }
                     true
                 }
                 R.id.menu_setting -> {
