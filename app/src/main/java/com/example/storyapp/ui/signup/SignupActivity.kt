@@ -38,17 +38,18 @@ class SignupActivity : AppCompatActivity() {
                 }
                 is Result.Success -> {
                     showLoading(false)
-                    AlertDialog.Builder(this@SignupActivity).apply {
+                    AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
                         setMessage("Akun sudah jadi nih. Yuk, login dan segera bagikan ceritamu.")
+                        setCancelable(false)
                         setPositiveButton("Lanjut") { _, _ ->
+                            val intent = Intent(context, LoginActivity::class.java)
+                            startActivity(intent)
                             finish()
                         }
                         create()
                         show()
                     }
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
                 }
                 is Result.Error -> {
                     registerFailedToast()
