@@ -54,7 +54,7 @@ class UploadStoryActivity : AppCompatActivity() {
         binding = ActivityUploadStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Upload Story"
+        supportActionBar?.title = getString(R.string.upload_page_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
@@ -72,10 +72,10 @@ class UploadStoryActivity : AppCompatActivity() {
                 is Result.Success -> {
                     showLoading(false)
                     AlertDialog.Builder(this).apply {
-                        setTitle("Berhasil!")
-                        setMessage("Ceritamu telah diupload.")
+                        setTitle("Yeah!")
+                        setMessage(getString(R.string.upload_dialog_message))
                         setCancelable(false)
-                        setPositiveButton("Lanjut") { _, _ ->
+                        setPositiveButton(getString(R.string.dialog_positive_button)) { _, _ ->
                             val intent = Intent(context, MainActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)

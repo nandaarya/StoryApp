@@ -64,7 +64,7 @@ class PasswordEditText : AppCompatEditText {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (s.toString().isNotEmpty() && s.length < 8) {
-                    setError("Password tidak boleh kurang dari 8 karakter", null)
+                    setError(context.getString(R.string.invalid_password), null)
                 } else {
                     error = null
                 }

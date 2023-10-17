@@ -2,7 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/menu_setting"
+        android:title="@string/setting"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/menu_logout"
         android:title="@string/logout"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 </menu>

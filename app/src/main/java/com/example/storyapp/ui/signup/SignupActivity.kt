@@ -40,9 +40,9 @@ class SignupActivity : AppCompatActivity() {
                     showLoading(false)
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
-                        setMessage("Akun sudah jadi nih. Yuk, login dan segera bagikan ceritamu.")
+                        setMessage(getString(R.string.register_dialog_message))
                         setCancelable(false)
-                        setPositiveButton("Lanjut") { _, _ ->
+                        setPositiveButton(getString(R.string.dialog_positive_button)) { _, _ ->
                             val intent = Intent(context, LoginActivity::class.java)
                             startActivity(intent)
                             finish()

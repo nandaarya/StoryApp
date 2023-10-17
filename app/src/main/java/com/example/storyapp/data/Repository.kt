@@ -2,6 +2,7 @@ package com.example.storyapp.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import com.example.storyapp.data.datastore.LocaleDataStore
 import com.example.storyapp.data.datastore.UserPreference
 import com.example.storyapp.data.response.ListStoryItem
 import com.example.storyapp.data.response.LoginResponse
@@ -15,7 +16,8 @@ import okhttp3.RequestBody
 
 class Repository private constructor(
     private val apiService: ApiService,
-    private val userPreference: UserPreference
+    private val userPreference: UserPreference,
+    private val localeDataStore: LocaleDataStore
 ) {
 
     private suspend fun saveSession(user: UserModel) {
@@ -81,15 +83,22 @@ class Repository private constructor(
             }
         }
 
+    fun getLocale(): Flow<String> = localeDataStore.getLocaleSetting()
+
+    suspend fun saveLocale(locale: String) {
+        localeDataStore.saveLocaleSetting(locale)
+    }
+
     companion object {
         @Volatile
         private var instance: Repository? = null
         fun getInstance(
             apiService: ApiService,
-            userPreference: UserPreference
+            userPreference: UserPreference,
+            localeDataStore: LocaleDataStore
         ): Repository =
             instance ?: synchronized(this) {
-                instance ?: Repository(apiService, userPreference)
+                instance ?: Repository(apiService, userPreference, localeDataStore)
             }.also { instance = it }
     }
 }

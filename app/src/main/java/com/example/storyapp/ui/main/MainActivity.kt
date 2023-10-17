@@ -10,6 +10,7 @@ import com.example.storyapp.R
 import com.example.storyapp.data.Result
 import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.ui.adapter.StoryListAdapter
+import com.example.storyapp.ui.setting.SettingActivity
 import com.example.storyapp.ui.upload.UploadStoryActivity
 import com.example.storyapp.ui.welcome.WelcomeActivity
 import com.example.storyapp.utils.ViewModelFactory
@@ -70,6 +71,11 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.menu_logout -> {
                     mainViewModel.logout()
+                    true
+                }
+                R.id.menu_setting -> {
+                    val intent = Intent(this, SettingActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false

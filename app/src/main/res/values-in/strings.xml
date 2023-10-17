@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StoryApp</string>
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="message_welcome_page">Mari bergabung bersama kami! Bagikan cerita dan pengalamanmu kepada banyak orang untuk menginspirasi mereka!</string>
+    <string name="title_welcome_page">Selamat datang di StoryApp!</string>
+    <string name="title_signup_page">Segera lengkapi data dirimu untuk membuat akun baru!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Segera masukkan datamu untuk login!</string>
+    <string name="title_login_page">Ada cerita yang ingin dibagikan?</string>
+    <string name="name">Nama</string>
+    <string name="logout">Keluar</string>
+    <string name="welcome_image">Welcome Image</string>
+    <string name="login_image">Login Image</string>
+    <string name="image_signup">Image Signup</string>
+    <string name="edt_name_hint">Masukkan Nama Anda</string>
+    <string name="edt_email_hint">Masukkan Email Anda</string>
+    <string name="edt_password_hint">Masukkan Password Anda</string>
+    <string name="invalid_email">Alamat Email Tidak Valid</string>
+    <string name="invalid_password">Password tidak boleh kurang dari 8 karakter</string>
+    <string name="register_failed">Register gagal, masukkan data dengan benar!</string>
+    <string name="login_failed">Login gagal! Masukkan email dan password yang benar!</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="upload">Unggah</string>
+    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="description_hint">Tulis deskripsi Anda…</string>
+    <string name="language">Bahasa</string>
+    <string name="setting">Pengaturan</string>
+    <string name="detail_page_title">Detail Cerita</string>
+    <string name="upload_page_title">Unggah Cerita</string>
+    <string name="register_dialog_message">Akunmu sudah jadi nih. Yuk, login dan segera bagikan ceritamu.</string>
+    <string name="dialog_positive_button">Lanjut</string>
+    <string name="upload_dialog_message">Ceritamu telah diupload.</string>
+    <string name="login_dialog_message">Anda berhasil login!</string>
+    <string name="login_failed_dialog">Login gagal! Masukkan data email dan password dengan benar.</string>
+    <string name="login_failed_dialog_title">Maaf!</string>
+    <string-array name="language_array">
+        <item>Inggris</item>
+        <item>Indonesia</item>
+    </string-array>
+</resources>

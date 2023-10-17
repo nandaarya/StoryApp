@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.example.storyapp.R
 import com.example.storyapp.data.response.ListStoryItem
 import com.example.storyapp.databinding.ActivityDetailBinding
 
@@ -17,7 +18,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Detail Story"
+        supportActionBar?.title = getString(R.string.detail_page_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         storyItem = if (Build.VERSION.SDK_INT >= 33) {

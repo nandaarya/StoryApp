@@ -11,6 +11,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.storyapp.R
 import com.example.storyapp.data.Result
 import com.example.storyapp.databinding.ActivityLoginBinding
 import com.example.storyapp.ui.main.MainActivity
@@ -37,9 +38,9 @@ class LoginActivity : AppCompatActivity() {
                     showLoading(false)
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
-                        setMessage("Anda berhasil login!")
+                        setMessage(getString(R.string.login_dialog_message))
                         setCancelable(false)
-                        setPositiveButton("Lanjut") { _, _ ->
+                        setPositiveButton(getString(R.string.dialog_positive_button)) { _, _ ->
                             val intent = Intent(context, MainActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
@@ -51,8 +52,8 @@ class LoginActivity : AppCompatActivity() {
                 }
                 is Result.Error -> {
                     AlertDialog.Builder(this).apply {
-                        setTitle("Maaf!")
-                        setMessage("Login gagal! Masukkan data email dan password dengan benar.")
+                        setTitle(getString(R.string.login_failed_dialog_title))
+                        setMessage(getString(R.string.login_failed_dialog))
                         create()
                         show()
                     }

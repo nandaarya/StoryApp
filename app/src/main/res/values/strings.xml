@@ -1,31 +1,43 @@
 <resources>
     <string name="app_name">StoryApp</string>
-    <string name="signup">Daftar</string>
-    <string name="login">Masuk</string>
-    <string name="message_welcome_page">Mari bergabung bersama kami! Bagikan cerita dan pengalamanmu kepada banyak orang untuk menginspirasi mereka!</string>
-    <string name="title_welcome_page">Selamat datang di StoryApp!</string>
-    <string name="title_signup_page">Segera lengkapi data dirimu untuk membuat akun baru!</string>
+    <string name="signup">Register</string>
+    <string name="login">Login</string>
+    <string name="message_welcome_page">Lets join us! Share your stories and experiences with many people to inspire them!</string>
+    <string name="title_welcome_page">Welcome to StoryApp!</string>
+    <string name="title_signup_page">Immediately complete your data to create a new account!</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="message_login_page">Segera masukkan datamu untuk login!</string>
-    <string name="title_login_page">Ada cerita yang ingin dibagikan?</string>
-    <string name="name">Nama</string>
-    <string name="message_main_page">Selamat Belajar di Dicoding.</string>
-    <string name="greeting">Halo %1$s,</string>
-    <string name="logout">Keluar</string>
+    <string name="message_login_page">Immediately enter your data to log in!</string>
+    <string name="title_login_page">Have a story you want to share?</string>
+    <string name="name">Name</string>
+    <string name="logout">Logout</string>
     <string name="welcome_image">Welcome Image</string>
     <string name="login_image">Login Image</string>
     <string name="image_signup">Image Signup</string>
-    <string name="edt_name_hint">Masukkan Nama Anda</string>
-    <string name="edt_email_hint">Masukkan Email Anda</string>
-    <string name="edt_password_hint">Masukkan Password Anda</string>
-    <string name="invalid_email">Alamat Email Tidak Valid</string>
-    <string name="invalid_password">Password tidak boleh kurang dari 8 karakter</string>
-    <string name="register_failed">Register gagal, masukkan data dengan benar!</string>
-    <string name="login_failed">Login gagal! Masukkan email dan password yang benar!</string>
+    <string name="edt_name_hint">Enter Your Name</string>
+    <string name="edt_email_hint">Enter your Email</string>
+    <string name="edt_password_hint">Enter your Password</string>
+    <string name="invalid_email">Invalid Email Address</string>
+    <string name="invalid_password">Password must not be less than 8 characters</string>
+    <string name="register_failed">Register failed, enter data correctly!</string>
+    <string name="login_failed">Login failed! Enter the correct email and password!</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="upload">Upload</string>
-    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="empty_image_warning">Please insert the image file first!</string>
     <string name="description_hint">Write your description…</string>
+    <string name="language">Language</string>
+    <string name="setting">Setting</string>
+    <string name="detail_page_title">Detail Story</string>
+    <string name="upload_page_title">Upload Story</string>
+    <string name="register_dialog_message">your account is ready. login and immediately share your story.</string>
+    <string name="dialog_positive_button">Next</string>
+    <string name="upload_dialog_message">Your story has been uploaded.</string>
+    <string name="login_dialog_message">You have successfully logged in!</string>
+    <string name="login_failed_dialog">Login failed! Enter your email and password data correctly.</string>
+    <string name="login_failed_dialog_title">Sorry!</string>
+    <string-array name="language_array">
+        <item>English</item>
+        <item>Indonesia</item>
+    </string-array>
 </resources>
