@@ -11,6 +11,7 @@ import com.example.storyapp.R
 import com.example.storyapp.data.Result
 import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.ui.adapter.StoryListAdapter
+import com.example.storyapp.ui.maps.MapsActivity
 import com.example.storyapp.ui.setting.SettingActivity
 import com.example.storyapp.ui.upload.UploadStoryActivity
 import com.example.storyapp.ui.welcome.WelcomeActivity
@@ -87,6 +88,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.menu_setting -> {
                     val intent = Intent(this, SettingActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.menu_maps -> {
+                    val intent = Intent(this, MapsActivity::class.java)
                     startActivity(intent)
                     true
                 }

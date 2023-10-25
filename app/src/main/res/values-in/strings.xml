@@ -48,4 +48,6 @@
         <item>Inggris</item>
         <item>Indonesia</item>
     </string-array>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="maps">Peta</string>
 </resources>
