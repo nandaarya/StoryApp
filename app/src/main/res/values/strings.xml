@@ -49,4 +49,5 @@
     </string-array>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="maps">Maps</string>
+    <string name="label_location">Add Current Location</string>
 </resources>

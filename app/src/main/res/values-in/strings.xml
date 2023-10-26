@@ -50,4 +50,5 @@
     </string-array>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="maps">Peta</string>
+    <string name="label_location">Tambahkan lokasi saat ini</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.storyapp.ui.upload
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -31,6 +32,7 @@ class UploadStoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUploadStoryBinding
     private var currentImageUri: Uri? = null
     private lateinit var uploadStoryViewModel: UploadStoryViewModel
+    private var currentLocation: Location? = null
 
     private val requestPermissionLauncher =
         registerForActivityResult(
