@@ -1,5 +1,6 @@
 package com.example.storyapp.ui.upload
 
+import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
@@ -20,8 +21,13 @@ class UploadStoryViewModel(private val repository: Repository): ViewModel() {
         return repository.getSession().asLiveData()
     }
 
-    fun uploadStory(token: String, file: MultipartBody.Part, description: RequestBody) {
-        val liveData = repository.uploadStory(token, file, description)
+    fun uploadStory(
+        token: String,
+        file: MultipartBody.Part,
+        description: RequestBody,
+        currentLocation: Location?
+    ) {
+        val liveData = repository.uploadStory(token, file, description, currentLocation)
         _uploadStoryResponse.addSource(liveData) { result ->
             _uploadStoryResponse.value = result
         }

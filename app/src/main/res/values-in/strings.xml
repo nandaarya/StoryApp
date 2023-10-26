@@ -51,4 +51,7 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="maps">Peta</string>
     <string name="label_location">Tambahkan lokasi saat ini</string>
+    <string name="error_no_location">Lokasi tidak tersedia</string>
+    <string name="gps_dialog_message">Hidupkan GPS Perangkat Anda untuk membagikan lokasi!</string>
+    <string name="gps_dialog_tittle">Maaf, GPS perangkat anda belum aktif.</string>
 </resources>

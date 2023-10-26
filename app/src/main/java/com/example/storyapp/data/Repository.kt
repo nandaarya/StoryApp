@@ -1,5 +1,6 @@
 package com.example.storyapp.data
 
+import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.storyapp.data.datastore.LocaleDataStore
@@ -11,8 +12,10 @@ import com.example.storyapp.data.response.UploadStoryResponse
 import com.example.storyapp.data.retrofit.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class Repository private constructor(
     private val apiService: ApiService,
@@ -84,11 +87,28 @@ class Repository private constructor(
             }
         }
 
-    fun uploadStory(token: String, file: MultipartBody.Part, description: RequestBody): LiveData<Result<UploadStoryResponse>> =
+    fun uploadStory(
+        token: String,
+        file: MultipartBody.Part,
+        description: RequestBody,
+        currentLocation: Location?
+    ): LiveData<Result<UploadStoryResponse>> =
         liveData(Dispatchers.IO) {
             emit(Result.Loading)
             try {
-                val response = apiService.uploadStory("Bearer $token", file, description)
+                val response = if (currentLocation != null) {
+                    apiService.uploadStory(
+                        "Bearer $token",
+                        file,
+                        description,
+                        currentLocation.latitude.toString()
+                            .toRequestBody("text/plain".toMediaType()),
+                        currentLocation.longitude.toString()
+                            .toRequestBody("text/plain".toMediaType())
+                    )
+                } else {
+                    apiService.uploadStory("Bearer $token", file, description)
+                }
                 emit(Result.Success(response))
             } catch (e: Exception) {
                 emit(Result.Error(e.message.toString()))

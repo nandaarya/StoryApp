@@ -50,4 +50,7 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="maps">Maps</string>
     <string name="label_location">Add Current Location</string>
+    <string name="error_no_location">Location is not available</string>
+    <string name="gps_dialog_message">Turn on your Devices GPS to share your location!</string>
+    <string name="gps_dialog_tittle">Sorry, your devices GPS is not active.</string>
 </resources>

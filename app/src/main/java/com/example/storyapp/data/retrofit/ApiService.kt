@@ -1,5 +1,6 @@
 package com.example.storyapp.data.retrofit
 
+import android.location.Location
 import com.example.storyapp.data.response.LoginResponse
 import com.example.storyapp.data.response.RegisterResponse
 import com.example.storyapp.data.response.StoryResponse
@@ -42,5 +43,7 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody? = null,
+        @Part("lon") lon: RequestBody? = null
     ): UploadStoryResponse
 }
