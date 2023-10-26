@@ -72,6 +72,18 @@ class Repository private constructor(
             }
         }
 
+    fun getStoriesWithLocation(token: String): LiveData<Result<List<ListStoryItem>>> =
+        liveData(Dispatchers.IO) {
+            emit(Result.Loading)
+            try {
+                val response = apiService.getStoriesWithLocation("Bearer $token")
+                val storyList = response.listStory
+                emit(Result.Success(storyList))
+            } catch (e: Exception) {
+                emit(Result.Error(e.message.toString()))
+            }
+        }
+
     fun uploadStory(token: String, file: MultipartBody.Part, description: RequestBody): LiveData<Result<UploadStoryResponse>> =
         liveData(Dispatchers.IO) {
             emit(Result.Loading)
