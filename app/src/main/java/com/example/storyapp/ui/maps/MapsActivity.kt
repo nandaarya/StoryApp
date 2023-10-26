@@ -10,10 +10,12 @@ import com.example.storyapp.data.Result
 import com.example.storyapp.databinding.ActivityMapsBinding
 import com.example.storyapp.ui.welcome.WelcomeActivity
 import com.example.storyapp.utils.ViewModelFactory
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -66,6 +68,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
                 is Result.Success -> {
                     showLoading(false)
+                    val boundsBuilder = LatLngBounds.Builder()
                     it.data.forEach { data ->
                         if (data.lat != null && data.lon != null ) {
                             val latLng = LatLng(data.lat, data.lon)
@@ -75,8 +78,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                                     .title(data.name)
                                     .snippet(data.description)
                             )
+                            boundsBuilder.include(latLng)
                         }
                     }
+                    val bounds: LatLngBounds = boundsBuilder.build()
+                    mMap.animateCamera(
+                        CameraUpdateFactory.newLatLngBounds(
+                            bounds,
+                            resources.displayMetrics.widthPixels,
+                            resources.displayMetrics.heightPixels,
+                            300
+                        )
+                    )
                 }
             }
         }
