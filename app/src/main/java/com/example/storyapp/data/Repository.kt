@@ -1,6 +1,7 @@
 package com.example.storyapp.data
 
 import android.location.Location
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.storyapp.data.datastore.LocaleDataStore
@@ -68,6 +69,7 @@ class Repository private constructor(
             emit(Result.Loading)
             try {
                 val response = apiService.getStories("Bearer $token")
+                Log.d("paging", "token: $token")
                 val storyList = response.listStory
                 emit(Result.Success(storyList))
             } catch (e: Exception) {

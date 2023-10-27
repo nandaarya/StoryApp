@@ -13,8 +13,8 @@ class MapsViewModel(private val repository: Repository): ViewModel() {
     private val _storyListWithLocation = MediatorLiveData<Result<List<ListStoryItem>>>()
     val storyListWithLocation: LiveData<Result<List<ListStoryItem>>> = _storyListWithLocation
 
-    fun getStories(token: String) {
-        val liveData = repository.getStories(token)
+    fun getStoriesWithLocation(token: String) {
+        val liveData = repository.getStoriesWithLocation(token)
         _storyListWithLocation.addSource(liveData) { result ->
             _storyListWithLocation.value = result
         }

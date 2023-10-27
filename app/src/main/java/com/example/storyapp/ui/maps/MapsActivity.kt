@@ -61,7 +61,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             } else {
-                mapsViewModel.getStories(user.token)
+                mapsViewModel.getStoriesWithLocation(user.token)
             }
         }
 
