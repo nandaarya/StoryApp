@@ -1,7 +1,6 @@
 package com.example.storyapp.data
 
 import android.location.Location
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.paging.Pager
@@ -17,8 +16,6 @@ import com.example.storyapp.data.response.UploadStoryResponse
 import com.example.storyapp.data.retrofit.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -63,26 +60,12 @@ class Repository private constructor(
             try {
                 val response = apiService.login(email, password)
                 val token = response.loginResult.token
-                Log.d("login","token: $token")
                 saveSession(UserModel(email, token))
                 emit(Result.Success(response))
             } catch (e: Exception) {
                 emit(Result.Error(e.message.toString()))
             }
         }
-
-//    fun getStories(token: String): LiveData<Result<List<ListStoryItem>>> =
-//        liveData(Dispatchers.IO) {
-//            emit(Result.Loading)
-//            try {
-//                val response = apiService.getStories("Bearer $token")
-//                Log.d("paging", "token: $token")
-//                val storyList = response.listStory
-//                emit(Result.Success(storyList))
-//            } catch (e: Exception) {
-//                emit(Result.Error(e.message.toString()))
-//            }
-//        }
 
     fun getStories(token: String): LiveData<PagingData<ListStoryItem>> {
         return Pager(

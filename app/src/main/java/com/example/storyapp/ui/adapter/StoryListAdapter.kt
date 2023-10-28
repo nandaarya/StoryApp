@@ -52,10 +52,6 @@ class StoryListAdapter:
         )
     }
 
-//    override fun getItemCount(): Int {
-//        return storyList.size
-//    }
-
     override fun onBindViewHolder(holder: StoryListViewHolder, position: Int) {
         val data = getItem(position)
         if (data != null) {

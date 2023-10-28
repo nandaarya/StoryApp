@@ -11,7 +11,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.Toast
@@ -39,6 +38,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.util.concurrent.TimeUnit
 
+@Suppress("DEPRECATION")
 class UploadStoryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUploadStoryBinding
@@ -204,7 +204,6 @@ class UploadStoryActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     getNewLocation()
-//                    binding.switchLocation.isChecked = false
                 }
             }
         } else {
@@ -231,16 +230,7 @@ class UploadStoryActivity : AppCompatActivity() {
                 this,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
-        }
+        )
         Looper.myLooper()?.let {
             fusedLocationClient.requestLocationUpdates(
                 locationRequest,locationCallback, it
@@ -251,7 +241,6 @@ class UploadStoryActivity : AppCompatActivity() {
     private val locationCallback = object : LocationCallback(){
         override fun onLocationResult(locationResult: LocationResult) {
             currentLocation = locationResult.lastLocation
-            Log.d("location", currentLocation.toString())
         }
     }
 

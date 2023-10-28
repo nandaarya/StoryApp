@@ -2,14 +2,12 @@ package com.example.storyapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.storyapp.R
-import com.example.storyapp.data.Result
 import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.ui.adapter.LoadingStateAdapter
 import com.example.storyapp.ui.adapter.StoryListAdapter
@@ -22,7 +20,6 @@ import com.example.storyapp.utils.ViewModelFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adapter: StoryListAdapter
     private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,24 +40,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
-//            else {
-//                mainViewModel.getStories(user.token)
-//            }
         }
-
-//        mainViewModel.storyList.observe(this) {
-//            when (it) {
-//                is Result.Loading -> showLoading(true)
-//                is Result.Error -> {
-//                    showLoading(false)
-//                }
-//                is Result.Success -> {
-//                    showLoading(false)
-//                    adapter = StoryListAdapter(it.data)
-//                    binding.rvStoryList.adapter = adapter
-//                }
-//            }
-//        }
 
         getData()
         setOptionMenu()
@@ -76,7 +56,6 @@ class MainActivity : AppCompatActivity() {
         )
         mainViewModel.storyList.observe(this) {
             adapter.submitData(lifecycle, it)
-            Log.d("paging", "data stories: $it")
         }
         showLoading(false)
     }
