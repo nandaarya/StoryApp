@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.storyapp.R
 import com.example.storyapp.data.Result
 import com.example.storyapp.databinding.ActivityMainBinding
+import com.example.storyapp.ui.adapter.LoadingStateAdapter
 import com.example.storyapp.ui.adapter.StoryListAdapter
 import com.example.storyapp.ui.maps.MapsActivity
 import com.example.storyapp.ui.setting.SettingActivity
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        showLoading(true)
 
         val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
         mainViewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
@@ -66,11 +69,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun getData() {
         val adapter = StoryListAdapter()
-        binding.rvStoryList.adapter = adapter
+        binding.rvStoryList.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
         mainViewModel.storyList.observe(this) {
             adapter.submitData(lifecycle, it)
             Log.d("paging", "data stories: $it")
         }
+        showLoading(false)
     }
 
     private fun setFAB() {
