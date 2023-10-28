@@ -2,6 +2,7 @@ package com.example.storyapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -38,27 +39,38 @@ class MainActivity : AppCompatActivity() {
             if (!user.isLogin) {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
-            } else {
-                mainViewModel.getStories(user.token)
             }
+//            else {
+//                mainViewModel.getStories(user.token)
+//            }
         }
 
-        mainViewModel.storyList.observe(this) {
-            when (it) {
-                is Result.Loading -> showLoading(true)
-                is Result.Error -> {
-                    showLoading(false)
-                }
-                is Result.Success -> {
-                    showLoading(false)
-                    adapter = StoryListAdapter(it.data)
-                    binding.rvStoryList.adapter = adapter
-                }
-            }
-        }
+//        mainViewModel.storyList.observe(this) {
+//            when (it) {
+//                is Result.Loading -> showLoading(true)
+//                is Result.Error -> {
+//                    showLoading(false)
+//                }
+//                is Result.Success -> {
+//                    showLoading(false)
+//                    adapter = StoryListAdapter(it.data)
+//                    binding.rvStoryList.adapter = adapter
+//                }
+//            }
+//        }
 
+        getData()
         setOptionMenu()
         setFAB()
+    }
+
+    private fun getData() {
+        val adapter = StoryListAdapter()
+        binding.rvStoryList.adapter = adapter
+        mainViewModel.storyList.observe(this) {
+            adapter.submitData(lifecycle, it)
+            Log.d("paging", "data stories: $it")
+        }
     }
 
     private fun setFAB() {

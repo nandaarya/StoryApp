@@ -1,10 +1,7 @@
 package com.example.storyapp.data.retrofit
 
 import android.location.Location
-import com.example.storyapp.data.response.LoginResponse
-import com.example.storyapp.data.response.RegisterResponse
-import com.example.storyapp.data.response.StoryResponse
-import com.example.storyapp.data.response.UploadStoryResponse
+import com.example.storyapp.data.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -29,6 +26,8 @@ interface ApiService {
     @GET("stories")
     suspend fun getStories(
         @Header("Authorization") token: String,
+        @Query("page") page: Int = 1,
+        @Query("size") size: Int = 20
     ): StoryResponse
 
     @GET("stories")
