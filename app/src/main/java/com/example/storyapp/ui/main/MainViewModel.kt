@@ -22,16 +22,26 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 //        repository.getStories(token).cachedIn(viewModelScope)
 //    }
 
-    private var token: String = "token default"
-
-    init {
-       viewModelScope.launch {
-           repository.getSession().collect{ user ->
-               token = user.token
-               Log.d("paging view model", "token: $token")
-           }
-       }
+    private fun getToken(): String {
+        var token = ""
+        viewModelScope.launch {
+            repository.getSession().collect{ user ->
+                token = user.token
+            }
+        }
+        return token
     }
+
+//    private var token: String = "token default"
+//
+//    init {
+//       viewModelScope.launch {
+//           repository.getSession().collect{ user ->
+//               token = user.token
+//               Log.d("paging view model", "token: $token")
+//           }
+//       }
+//    }
 
 //    fun getToken(): String {
 //        token = repository.getSession().map { userModel ->
@@ -42,7 +52,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 //    }
 
     val storyList: LiveData<PagingData<ListStoryItem>> =
-        repository.getStories(token).cachedIn(viewModelScope)
+        repository.getStories(getToken()).cachedIn(viewModelScope)
 
 //    fun getStories(token: String) {
 //        val liveData = repository.getStories(token).cachedIn(viewModelScope)
