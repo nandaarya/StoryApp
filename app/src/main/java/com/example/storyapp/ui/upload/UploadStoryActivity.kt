@@ -55,9 +55,11 @@ class UploadStoryActivity : AppCompatActivity() {
                 permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> {
                     getMyLastLocation()
                 }
+
                 permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
                     getMyLastLocation()
                 }
+
                 else -> {
                     binding.switchLocation.isChecked = false
                 }
@@ -80,6 +82,7 @@ class UploadStoryActivity : AppCompatActivity() {
                 is Result.Loading -> {
                     showLoading(true)
                 }
+
                 is Result.Success -> {
                     showLoading(false)
                     AlertDialog.Builder(this).apply {
@@ -88,7 +91,8 @@ class UploadStoryActivity : AppCompatActivity() {
                         setCancelable(false)
                         setPositiveButton(getString(R.string.dialog_positive_button)) { _, _ ->
                             val intent = Intent(context, MainActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
                             finish()
                         }
@@ -96,6 +100,7 @@ class UploadStoryActivity : AppCompatActivity() {
                         show()
                     }
                 }
+
                 is Result.Error -> {
                     showLoading(false)
                 }
@@ -216,9 +221,9 @@ class UploadStoryActivity : AppCompatActivity() {
         }
     }
 
-    private fun getNewLocation(){
-        Toast.makeText(this.baseContext,"Get New Location", Toast.LENGTH_SHORT).show()
-        val locationRequest =  LocationRequest()
+    private fun getNewLocation() {
+        Toast.makeText(this.baseContext, "Get New Location", Toast.LENGTH_SHORT).show()
+        val locationRequest = LocationRequest()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         locationRequest.interval = TimeUnit.SECONDS.toMillis(1)
         locationRequest.fastestInterval = 0
@@ -231,14 +236,14 @@ class UploadStoryActivity : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         )
-        Looper.myLooper()?.let {
-            fusedLocationClient.requestLocationUpdates(
-                locationRequest,locationCallback, it
-            )
-        }
+            Looper.myLooper()?.let {
+                fusedLocationClient.requestLocationUpdates(
+                    locationRequest, locationCallback, it
+                )
+            }
     }
 
-    private val locationCallback = object : LocationCallback(){
+    private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             currentLocation = locationResult.lastLocation
         }
